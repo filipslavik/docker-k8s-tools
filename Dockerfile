@@ -19,7 +19,7 @@ RUN set -x \
 	&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
 	&& rm kubectl \
 	# install devspace (https://devspace.sh/)
-	&& curl -L -o devspace https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_RELEASE_VERSION/devspace-linux-arm64 \
+	&& curl -L -o devspace https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_RELEASE_VERSION/devspace-linux-amd64 \
 	&& install -o root -g root -m 0755 devspace /usr/local/bin/devspace \
 	&& rm devspace \
 	# install helm
