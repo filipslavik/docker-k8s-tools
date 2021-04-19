@@ -11,6 +11,7 @@ RUN set -x \
 		curl \
 		tar \
 		busybox-extras \
+		docker \
 	&& pip install awscli \
 	&& rm -rf /root/.cache/pip \
 	# install kubectl 
