@@ -15,6 +15,7 @@ RUN set -x \
 	# install kubectl 
 	&& curl -LO "https://dl.k8s.io/release/$KUBECTL_RELEASE_VERSION/bin/linux/amd64/kubectl" \
 	&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+	&& rm kubectl \
 	# install devspace (https://devspace.sh/)
 	&& curl -L -o devspace https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_RELEASE_VERSION/devspace-linux-arm64 \
 	&& install -o root -g root -m 0755 devspace /usr/local/bin/devspace 
