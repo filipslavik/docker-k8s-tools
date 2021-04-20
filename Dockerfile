@@ -2,6 +2,7 @@ FROM alpine:3.12 as build_image
 
 ARG KUBECTL_RELEASE_VERSION=v1.21.0
 ARG DEVSPACE_RELEASE_VERSION=v5.11.0
+ARG HELM_RELEASE_VERSION=v3.5.4
 
 ## virtualenv
 ENV VIRTUAL_ENV=/opt/venv
@@ -28,7 +29,7 @@ RUN set -x \
 	# install helm
 	&& curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
 	&& chmod 700 get_helm.sh \
-	&& ./get_helm.sh
+	&& ./get_helm.sh --version $HELM_RELEASE_VERSION
 
 FROM docker:20.10.6
 
