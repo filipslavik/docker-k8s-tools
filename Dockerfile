@@ -3,6 +3,7 @@ FROM alpine:3.12 as build_image
 ARG KUBECTL_RELEASE_VERSION=v1.21.0
 ARG DEVSPACE_RELEASE_VERSION=v5.11.0
 ARG HELM_RELEASE_VERSION=v3.5.4
+ARG AWSCLI_RELEASE_VERSION=1.19.54
 
 ## virtualenv
 ENV VIRTUAL_ENV=/opt/venv
@@ -19,7 +20,7 @@ RUN set -x \
 	# install aws-cli
 	&& python3 -m venv $VIRTUAL_ENV \
 	&& source $VIRTUAL_ENV/bin/activate \
-	&& pip install --upgrade awscli \
+	&& pip install --upgrade awscli==$AWSCLI_RELEASE_VERSION \
 	# install kubectl 
 	&& curl -fsSL -o kubectl "https://dl.k8s.io/release/$KUBECTL_RELEASE_VERSION/bin/linux/amd64/kubectl" \
 	&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
