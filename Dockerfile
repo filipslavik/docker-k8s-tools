@@ -30,7 +30,7 @@ RUN set -x \
 	&& chmod 700 get_helm.sh \
 	&& ./get_helm.sh
 
-FROM docker:latest
+FROM docker:20.10.6
 
 # copy artificates from build_image
 COPY --from=build_image /usr/local/bin/kubectl /usr/local/bin/
