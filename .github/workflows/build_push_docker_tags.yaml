@@ -2,9 +2,6 @@ name: "Docker Image Build & Push Tags"
 
 on:
   push:
-    branches:
-      - 'main'
-      - 'docker_action'
     tags:
       - 'v*.*.*'
   pull_request:
