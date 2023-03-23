@@ -32,7 +32,9 @@ RUN set -x \
 	&& chmod 700 get_helm.sh \
 	&& ./get_helm.sh --version $HELM_RELEASE_VERSION
 
-FROM docker:20.10.6
+FROM docker:20.10.23
+# install buildx plugin
+COPY --from=docker/buildx-bin:0.10.4 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
 
 # copy artificates from build_image
 COPY --from=build_image /usr/local/bin/kubectl /usr/local/bin/
