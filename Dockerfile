@@ -1,4 +1,4 @@
-FROM alpine:3.12 as build_image
+FROM alpine:3.17 as build_image
 
 ARG KUBECTL_RELEASE_VERSION=v1.21.0
 ARG DEVSPACE_RELEASE_VERSION=v5.18.5
