@@ -1,7 +1,8 @@
-FROM alpine:3.21 as build_image
+FROM alpine:3.21 AS build_image
 
 ARG KUBECTL_RELEASE_VERSION=v1.27.16
 ARG DEVSPACE_RELEASE_VERSION=v5.18.5
+ARG DEVSPACE_6_RELEASE_VERSION=v6.3.18
 ARG HELM_RELEASE_VERSION=v3.19.2
 ARG AWSCLI_RELEASE_VERSION=1.40.41
 
@@ -24,9 +25,13 @@ RUN set -x \
 	# install kubectl 
 	&& curl -fsSL -o kubectl "https://dl.k8s.io/release/$KUBECTL_RELEASE_VERSION/bin/linux/amd64/kubectl" \
 	&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
-	# install devspace (https://devspace.sh/)
+	# install devspace 5.x (https://devspace.sh/)
 	&& curl -fsSL -o devspace https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_RELEASE_VERSION/devspace-linux-amd64 \
 	&& install -o root -g root -m 0755 devspace /usr/local/bin/devspace \
+	&& ln -s /usr/local/bin/devspace /usr/local/bin/devspace5 \
+	# install devspace 6.x (https://devspace.sh/)
+	&& curl -fsSL -o devspace6 "https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_6_RELEASE_VERSION/devspace-linux-amd64" \
+	&& install -c -m 0755 devspace6 /usr/local/bin \
 	# install helm
 	&& curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
 	&& chmod 700 get_helm.sh \
