@@ -33,7 +33,7 @@ RUN set -x \
 	&& ./get_helm.sh --version $HELM_RELEASE_VERSION 
 
 
-FROM docker:29-cli
+FROM docker:28-cli
 
 # install buildx plugin
 COPY --from=docker/buildx-bin:0.29.1 /buildx /usr/libexec/docker/cli-plugins/docker-buildx
